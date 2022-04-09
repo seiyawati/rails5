@@ -1,24 +1,13 @@
-# README
+# Rails Tutorial
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## コンテナ立ち上げ
 
-Things you may want to cover:
+`docker-compose up -d --build`
 
-* Ruby version
+## テスト実行
 
-* System dependencies
+`bundle exec rspec`
 
-* Configuration
+## Guardによるテスト自動化
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bundle exec guard`
