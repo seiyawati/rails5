@@ -24,9 +24,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
   webdriver_chrome:
-    image: selenium/standalone-chrome-debug
+    image: selenium/standalone-chrome:latest
     ports:
       - 4444:4444
-      - 5900:5900
 volumes:
   db-volume:

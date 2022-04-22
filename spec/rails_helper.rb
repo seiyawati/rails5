@@ -6,6 +6,20 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+Capybara.register_driver :remote_chrome do |app|
+  url = "http://chrome:4444/wd/hub"
+  caps = ::Selenium::WebDriver::Remote::Capabilities.chrome(
+    "goog:chromeOptions" => {
+      "args" => [
+        "no-sandbox",
+        "headless",
+        "disable-gpu",
+        "window-size=1680,1050"
+      ]
+    }
+  )
+  Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -31,6 +45,17 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :remote_chrome
+    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+    Capybara.server_port = 4444
+    Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
