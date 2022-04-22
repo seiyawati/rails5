@@ -48,18 +48,18 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    # context 'invalid values' do
-    #   it 'error messages should be displayed' do
-    #     visit signup_path
-    #     fill_in 'Name', with: ''
-    #     fill_in 'Email', with: 'user@invlid'
-    #     fill_in 'Password', with: 'foo'
-    #     fill_in 'Confirmation', with: 'bar'
-    #     click_button 'Create my account'
+    context 'invalid values' do
+      it 'error messages should be displayed' do
+        visit signup_path
+        fill_in 'Name', with: ''
+        fill_in 'Email', with: 'user@invlid'
+        fill_in 'Password', with: 'foo'
+        fill_in 'Confirmation', with: 'bar'
+        click_button 'Create my account'
 
-    #     expect(page).to have_selector 'div#error_explanation'
-    #     expect(page).to have_selector 'div.field_with_errors'
-    #   end
-    # end
+        expect(page).to have_selector 'div#error_explanation'
+        expect(page).to have_selector 'div.field_with_errors'
+      end
+    end
   end
 end
