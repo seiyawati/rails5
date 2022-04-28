@@ -46,6 +46,11 @@ RSpec.describe "Users", type: :request do
         post users_path, params: user_params
         expect(flash).to be_any
       end
+
+      it 'should be logged in' do
+        post users_path, params: user_params
+        expect(logged_in?).to be_truthy
+      end
     end
 
     context 'invalid values' do
