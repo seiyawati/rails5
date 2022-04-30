@@ -14,11 +14,11 @@
 
 ## デバッグ方法
 
-アタッチ
+アタッチ  
 `docker-compose attach コンテナID`
 
-検証する場所に以下を書く
+検証する場所に以下を書く  
 `binding.pry`
 
-デタッチ
+デタッチ  
 `Ctrl+P, Ctrl+Q`
