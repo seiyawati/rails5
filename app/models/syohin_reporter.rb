@@ -1,0 +1,2 @@
+class SyohinReporter < ApplicationRecord
+end

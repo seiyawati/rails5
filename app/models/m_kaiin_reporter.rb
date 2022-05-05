@@ -1,0 +1,2 @@
+class MKaiinReporter < SyohinReporter
+end

@@ -1,0 +1,2 @@
+class GuestReporter < SyohinReporter
+end
